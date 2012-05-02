@@ -5,11 +5,12 @@ import scala.io.Source
 import java.io.PrintWriter
 import java.io.FileWriter
 package object util {
+  
   val REPO_OPEN = "open"
   val REPO_CLOSE = "close"
   val REPO_NEW = "new"
   val REPO_DELETE = "rm"
-  val REPO_SHOW = "show"
+  val REPO_SHOW = "ls"
   val NOTE = "note"
     
   val CONFIG_PATH = System.getProperty("user.home") + "/.bashnoting"

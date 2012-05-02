@@ -8,7 +8,7 @@ import java.util.Date
 class Repository(path: String) {
   
   def note(message: String) {
-    val filename = toDateString
+    val filename = getDateString + ".txt"
       
     val file = if(path.endsWith(File.separator)) {
       new File(path + filename)
@@ -22,7 +22,7 @@ class Repository(path: String) {
     file.text = file.text + message
   }
   
-  private def toDateString = {
+  private def getDateString = {
     val simple = new SimpleDateFormat("yyyy-MM-dd")
     simple.format(new Date)
   }
@@ -30,21 +30,31 @@ class Repository(path: String) {
 
 object Repository {
   def open(name: String) {
-    val c = getConfig.text.split("\n").filter(!_.contains("current")).mkString("\n")
-    println(c)
-    val repoConf = c.split("\n").filter(_.contains(name)).head.replace(" ","").split(":")
-    getConfig.text = c + "\ncurrent:" + repoConf(1)
+    val confText = getConfig.text
+    if(confText.contains(name)) {
+      val c = confText.split("\n").filter(!_.contains("current")).mkString("\n")
+      val repoConf = c.split("\n").filter(_.contains(name)).head.replace(" ","").split(":")
+      getConfig.text = c + "\ncurrent:" + repoConf(0)
+    } else {
+    	Error.printNoSuchRepoError(name)
+    }
   }
   
   def current = {
-    val c = getConfig.text.split("\n").filter(_.contains("current")).head.split(":")
-    new Repository(c(1))
+    val confText = getConfig.text
+    if(confText.contains("current")) {
+      val c = confText.split("\n").filter(_.contains("current")).head.split(":")
+      val path = confText.split("\n").filter(_.contains(c(1))).head.split(":")
+      Some(new Repository(path(1)))
+    } else {
+      None
+    }
   }
   
   def newRepo(name: String, path: String) {
     val c = getConfig.text
     if(c.contains(name)) {
-    	println("Repository " + name + " already exist.");
+    	Error.printRepoAlreadyExistError(name)
     } else {
       val repoDir = new File(path)
       if(!repoDir.exists)
@@ -54,8 +64,13 @@ object Repository {
   }
   
   def rm(name: String) {
-    val c = getConfig.text.split("\n").filter(!_.contains(name)).mkString("\n")
-    getConfig.text = c
+    val cofigTest = getConfig.text
+    if(!cofigTest.contains(name)) {
+      Error.printNoSuchRepoError(name)
+    } else {
+      val c = cofigTest.split("\n").filter(!_.contains(name)).mkString("\n")
+      getConfig.text = c
+    }
   }
   
   def close {
@@ -64,11 +79,16 @@ object Repository {
   }
   
   def list {
-    getConfig.text.split("\n").filter(!_.contains("current")).map { s =>
-      val r = s.split(":")
-      (r(0), r(1))
-    } foreach { r =>
-      println(r._1 + " -> " + r._2)
+    val configText = getConfig.text
+    if(configText.isEmpty()) {
+      Error.printNoReposError
+    } else {
+      configText.split("\n").filter(s => !s.contains("current") && !s.isEmpty).map { s =>
+        val r = s.split(":")
+        (r(0), r(1))
+      } foreach { r =>
+        println(r._1 + " -> " + r._2)
+      }
     }
   }
 }
