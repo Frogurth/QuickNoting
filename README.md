@@ -36,3 +36,6 @@ Use java -jar <quicknoting jar file> with the following options
  * Appends the message to a file named after the current date. If the file does not exist, it will be created.
  * The level is optional and can be any string.
  * If a %l placeholder is defined in the prefix, then it will be translated to level.
+License
+-------
+QuickNoting is distributed under "GNU General Public License v3" http://www.gnu.org/licenses/gpl.html
