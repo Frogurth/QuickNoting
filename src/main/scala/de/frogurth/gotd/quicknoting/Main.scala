@@ -1,8 +1,8 @@
-package de.frogurth.gotd.bashnoting
+package de.frogurth.gotd.quicknoting
 
-import de.frogurth.gotd.bashnoting.util._
+import de.frogurth.gotd.quicknoting.util._
 import java.io.File
-import de.frogurth.gotd.bashnoting.repo.Repository
+import de.frogurth.gotd.quicknoting.repo.Repository
 
 object Main {
   def main(args: Array[String]): Unit = {

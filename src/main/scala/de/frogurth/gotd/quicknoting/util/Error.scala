@@ -1,4 +1,4 @@
-package de.frogurth.gotd.bashnoting.util
+package de.frogurth.gotd.quicknoting.util
 
 object Error {
   def printNoSuchRepoError(repo: String) {

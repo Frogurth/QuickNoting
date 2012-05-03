@@ -1,4 +1,4 @@
-package de.frogurth.gotd.bashnoting
+package de.frogurth.gotd.quicknoting
 
 import java.io.File
 import scala.io.Source

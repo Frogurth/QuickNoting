@@ -1,11 +1,11 @@
-package de.frogurth.gotd.bashnoting.repo
+package de.frogurth.gotd.quicknoting.repo
 
-import de.frogurth.gotd.bashnoting.util._
+import de.frogurth.gotd.quicknoting.util._
 import java.io.File
 import java.text.SimpleDateFormat
 import java.util.Date
 
-class Repository(path: String) {
+class Repository(path: String) { 
   
   def note(message: String) {
     val filename = getDateString + ".txt"
