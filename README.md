@@ -14,7 +14,7 @@ Use sbt one-jar to create a executable jar-file in target/scala-2.9.1/
 
 You can use [homebrew](https://github.com/mxcl/homebrew) to install QuickNoteing
 ```sh
-brew install https://raw.github.com/gist/2590091/5bb3b310bca79954b66142f05a3dd4b8fab038b9/quicknoting.rb
+brew install https://raw.github.com/gist/2590091/b3bbee2f0235c6399b8eced8674626f64576d477/quicknoting.rb
 ```
 Afterwards the command ```quicknoting``` will be availible.
 
