@@ -7,10 +7,13 @@ Dependecies
 -----------
 * [Scala](http://www.scala-lang.org) -- 2.9 or later
 
-Build
------
+Build and Install
+-----------------
 Build this project using [sbt](https://github.com/harrah/xsbt).
 Use sbt one-jar to create a executable jar-file in target/scala-2.9.1/
+
+You can use [homebrew](https://github.com/mxcl/homebrew) to install QuickNote
+```brew install https://raw.github.com/gist/2590091/5bb3b310bca79954b66142f05a3dd4b8fab038b9/quicknoting.rb```
 
 Usage
 -----
