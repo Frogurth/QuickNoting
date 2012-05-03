@@ -1,6 +1,4 @@
-./bin
 bin/
-lib/
-*.java
 target/
-project/
+*/target/
+*.sh

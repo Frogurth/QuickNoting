@@ -13,7 +13,7 @@ package object util {
   val REPO_SHOW = "ls"
   val NOTE = "note"
     
-  val CONFIG_PATH = System.getProperty("user.home") + "/.bashnoting"
+  val CONFIG_PATH = System.getProperty("user.home") + "/.quicknoting"
     
   def createConfig = {
     val config = new File(CONFIG_PATH)
