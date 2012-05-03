@@ -7,7 +7,7 @@ import java.util.Date
 
 class Repository(path: String) { 
   
-  def note(message: String) {
+  def note(message: String, level: String = "") {
     val filename = getDateString + ".txt"
       
     val file = if(path.endsWith(File.separator)) {
@@ -18,8 +18,33 @@ class Repository(path: String) {
     
     if(!file.exists())
       file.createNewFile();
-    
-    file.text = file.text + message
+    val formatMessage = if(existsConfig) LineFormatter.getPrefix(level) + " " + message else message
+    file.text = file.text + formatMessage
+  }
+  
+  def loadConfig = {
+    val conf = new File(path + File.separator + ".qnconf")
+    if(conf.exists)
+      Some(conf.text)
+    else
+      None
+  }
+  
+  def existsConfig = {
+    val exists = new File(path + File.separator + ".qnconf").exists
+    println(exists)
+    exists
+  }
+  
+  def setPrefix(prefix: String) {
+	val confFile = new File(path + File.separator + ".qnconf")
+    if(confFile.exists) {
+      val c = loadConfig.get.split("\n").filter(!_.contains("prefix")).mkString("\n")
+      confFile.text = c + "\nprefix:" + prefix
+    } else {
+      confFile.createNewFile
+      confFile.text = "prefix:" + prefix
+    }
   }
   
   private def getDateString = {

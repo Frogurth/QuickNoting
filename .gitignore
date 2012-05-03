@@ -2,3 +2,6 @@ bin/
 target/
 */target/
 *.sh
+.cache
+.classpath
+.project

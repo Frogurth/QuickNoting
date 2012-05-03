@@ -11,6 +11,7 @@ package object util {
   val REPO_NEW = "new"
   val REPO_DELETE = "rm"
   val REPO_SHOW = "ls"
+  val REPO_SET_PREFIX = "prefix"
   val NOTE = "note"
     
   val CONFIG_PATH = System.getProperty("user.home") + "/.quicknoting"

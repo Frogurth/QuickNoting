@@ -13,7 +13,13 @@ object Main {
       case REPO_NEW => Repository.newRepo(args(1), args(2))
       case REPO_DELETE => Repository.rm(args(1))
       case REPO_SHOW => Repository.list
-      case NOTE => Repository.current.map(_.note(args(1))).getOrElse(Error.printNoOpenRepoError)
+      case REPO_SET_PREFIX => Repository.current.map(_.setPrefix(args(1))).getOrElse(Error.printNoOpenRepoError)
+      case NOTE => Repository.current.map { repo => 
+        if(args.length > 2)
+          repo.note(args(1), args(2))
+        else
+          repo.note(args(1))
+        }.getOrElse(Error.printNoOpenRepoError)
       case _ =>
     }
   }
