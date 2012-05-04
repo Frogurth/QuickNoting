@@ -32,7 +32,6 @@ class Repository(path: String) {
   
   def existsConfig = {
     val exists = new File(path + File.separator + ".qnconf").exists
-    println(exists)
     exists
   }
   
